@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react'
 import styles from './AddReport.module.css'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ToastContainer, toast } from 'react-toastify'
+// import 'react-toastify/dist/ReactToastify.css'
 
 export default function AddReport() {
     const [image, setImage] = useState(null)
@@ -11,9 +13,15 @@ export default function AddReport() {
 
     const handleImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            setImage(URL.createObjectURL(e.target.files[0]))
-            setImageFile(e.target.files[0])
-            setApproved(false)
+            const file = e.target.files[0];
+            setImage(URL.createObjectURL(file));
+            // Convert to base64
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImageFile(reader.result); // base64 string
+            };
+            reader.readAsDataURL(file);
+            setApproved(false);
         }
     }
 
@@ -39,20 +47,35 @@ export default function AddReport() {
         const state = form.elements[1].value
         const description = form.elements[2].value
 
-        // Log all form data including the image file object
-        console.log({
-            title,
-            state,
-            description,
-            imageFile
+        fetch('http://localhost:3000/api/reports', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title,
+                state,
+                description,
+                imageFile
+            }),
         })
-
-        // Simulate async submit
-        setTimeout(() => setSubmitting(false), 1500)
+            .then(res => res.json())
+            .then(data => {
+                setSubmitting(false);
+                toast.success('تم إرسال البلاغ بنجاح!');
+                setImage(null);
+                setImageFile(null);
+                setApproved(false);
+            })
+            .catch(err => {
+                setSubmitting(false);
+                toast.error('حدث خطأ أثناء الإرسال');
+            });
     }
 
     return (
-        <div className={styles.addReport}>
+        <div className={styles.addReport} dir="ltr">
+            <ToastContainer position="top-center" />
             {/* Part 1: Take a Picture */}
             <div className={styles.pictureSection}>
                 {image && !approved ? (
