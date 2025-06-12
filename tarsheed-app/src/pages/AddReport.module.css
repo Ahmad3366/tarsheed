@@ -1,0 +1,56 @@
+.addReport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.pictureSection {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.previewImg {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 300px;
+}
+
+.input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+.textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+.customBtn {
+  padding: 10px 24px;
+  margin: 12px 0;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: 'Baloo Bhaijaan 2';
+}
+
+.btn1 {
+  background: #38bdf8;
+}
