@@ -20,7 +20,13 @@ const ReportSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true
-    }
+    },
+		status: {
+			type: String,
+			required: true,
+			default: 'in_progress',
+			enum: ['in_progress', 'resolved', 'rejected']
+		}
 }, {timestamps: true});
 
 module.exports = mongoose.model('Report', ReportSchema);
