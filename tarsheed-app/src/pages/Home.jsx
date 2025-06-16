@@ -1,7 +1,16 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
   const navigate = useNavigate()
+
+	useEffect(() => {
+    let userId = localStorage.getItem('userId')
+    if (!userId) {
+			userId = crypto.randomUUID()
+      localStorage.setItem('userId', userId)
+    }
+  }, [])
 
   return (
     <div className="center-container">

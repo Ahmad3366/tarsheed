@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import styles from './AddReport.module.css'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ToastContainer, toast } from 'react-toastify'
+import { Bounce, ToastContainer, toast } from 'react-toastify'
 // import 'react-toastify/dist/ReactToastify.css'
 
 export default function AddReport() {
@@ -39,43 +39,48 @@ export default function AddReport() {
         setApproved(false)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setSubmitting(true)
-        const form = e.target
-        const title = form.elements[0].value
-        const state = form.elements[1].value
-        const description = form.elements[2].value
+		const handleSubmit = async (e) => {
+			e.preventDefault()
+			setSubmitting(true)
+			const form = e.target
+			const title = form.elements[0].value
+			const state = form.elements[1].value
+			const description = form.elements[2].value
+			const userId = localStorage.getItem('userId') // Get userId from localStorage
 
-        fetch('http://localhost:3000/api/reports', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                title,
-                state,
-                description,
-                imageFile
-            }),
-        })
-            .then(res => res.json())
-            .then(data => {
-                setSubmitting(false);
-                toast.success('تم إرسال البلاغ بنجاح!');
-                setImage(null);
-                setImageFile(null);
-                setApproved(false);
-            })
-            .catch(err => {
-                setSubmitting(false);
-                toast.error('حدث خطأ أثناء الإرسال');
-            });
-    }
+			try {
+				const res = await fetch('http://localhost:3000/api/reports', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						title,
+						state,
+						description,
+						imageFile,
+						userId // Send userId with the request
+					}),
+				})
+				const json = await res.json()
+				if (res.ok) {
+					setSubmitting(false)
+					toast.success('تم إرسال البلاغ بنجاح!')
+					setImage(null)
+					setImageFile(null)
+					setApproved(false)
+				} else {
+					throw new Error(json.error);
+				}
+			} catch (err) {
+				setSubmitting(false)
+				toast.error('حدث خطأ أثناء الإرسال')
+			}
+		}
 
     return (
         <div className={styles.addReport} dir="ltr">
-            <ToastContainer position="top-center" />
+            <ToastContainer position="top-center" closeOnClick={true} rtl={true} pauseOnHover={false} transition={Bounce}  />
             {/* Part 1: Take a Picture */}
             <div className={styles.pictureSection}>
                 {image && !approved ? (

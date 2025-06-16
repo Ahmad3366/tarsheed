@@ -1,16 +1,17 @@
 const express = require('express');
-const router = express.Router()
+const router = express.Router();
+const reportsController = require('../controllers/reportsController');
 
-router.get('/', (req, res) => {
-	
-})
+// Get all reports
+router.get('/', reportsController.getAllReports);
 
-router.post('/', (req, res) => {
-	console.log(req.body);
+// Create a new report
+router.post('/', reportsController.createReport);
 
-	res.status(200).json(req.body)
-})
+// Get one report by ID
+router.get('/:id', reportsController.getReportById);
 
-router.get('/:id', (req, res) => {})
+// Delete a report by ID
+router.delete('/:id', reportsController.deleteReport);
 
-module.exports = router
+module.exports = router;
