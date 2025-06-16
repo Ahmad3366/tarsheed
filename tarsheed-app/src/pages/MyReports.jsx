@@ -7,7 +7,8 @@ export default function MyReports() {
 
     useEffect(() => {
         const userId = localStorage.getItem('userId')
-        fetch('http://localhost:3000/api/reports')
+        // fetch('http://localhost:3000/api/reports')
+        fetch('https://tarsheed-5nms.onrender.com/api/reports')
             .then(res => res.json())
             .then(data => {
                 setReports(data.filter(r => r.userId === userId))

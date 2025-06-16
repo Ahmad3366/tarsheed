@@ -49,7 +49,8 @@ export default function AddReport() {
 			const userId = localStorage.getItem('userId') // Get userId from localStorage
 
 			try {
-				const res = await fetch('http://localhost:3000/api/reports', {
+				// const res = await fetch('http://localhost:3000/api/reports', {
+				const res = await fetch('https://tarsheed-5nms.onrender.com/api/reports', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
