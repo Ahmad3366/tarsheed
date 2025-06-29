@@ -50,7 +50,7 @@ export default function AddReport() {
 
 			try {
 				// const res = await fetch('http://localhost:3000/api/reports', {
-				const res = await fetch('https://tarsheed-5nms.onrender.com/api/reports', {
+				const res = await fetch(API_URL, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
