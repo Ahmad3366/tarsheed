@@ -14,8 +14,6 @@ app.use(cors({
     origin: '*'
 }))
 
-// test test test
-
 app.get('/helloworld', (req, res) => {
 	res.send('helloworld')
 })
