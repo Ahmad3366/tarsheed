@@ -21,7 +21,7 @@ app.get('/helloworld', (req, res) => {
 // routes
 app.use('/api/reports', reportsRouter)
 
-mongoose.connect(process.env.MONGO_URI_DEV)
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     app.listen(process.env.PORT, () => {
         console.log(`listening on port ${process.env.PORT} and connected to db`);
