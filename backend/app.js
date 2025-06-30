@@ -20,8 +20,9 @@ app.get('/helloworld', (req, res) => {
 
 // routes
 app.use('/api/reports', reportsRouter)
+const mongoUri = process.env.NODE_ENV === 'dev' ? process.env.MONGO_URI_DEV : process.env.MONGO_URI;
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(mongoUri)
 .then(() => {
     app.listen(process.env.PORT, () => {
         console.log(`listening on port ${process.env.PORT} and connected to db`);
