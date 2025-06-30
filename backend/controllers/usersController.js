@@ -1,3 +1,5 @@
+const Admin = require('../models/Admin')
+
 exports.loginAdmin = async (req, res) => {
 	const { username, password } = req.body;
 	try {
