@@ -10,8 +10,6 @@ export default function MyReports() {
 
     useEffect(() => {
         const userId = localStorage.getItem('userId')
-        // fetch('http://localhost:3000/api/reports')
-        // fetch('https://tarsheed-5nms.onrender.com/api/reports')
         fetch(API_URL)
             .then(res => res.json())
             .then(data => {
