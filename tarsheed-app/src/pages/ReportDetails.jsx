@@ -22,7 +22,7 @@ export default function ReportDetails() {
     const handleDelete = async () => {
         if (window.confirm('هل أنت متأكد من حذف البلاغ؟')) {
             await fetch(`${API_URL}/${id}`, { method: 'DELETE' })
-            navigate('/my-report')
+            navigate('/my-report', { replace: true })
         }
     }
 
@@ -39,7 +39,6 @@ export default function ReportDetails() {
                 />
             )}
             <h2 className={styles.title}>{report.title}</h2>
-            <div className={styles.state}>{report.state}</div>
             <div className={styles.description}>{report.description}</div>
             <div className={styles.date}>
                 {new Date(report.createdAt).toLocaleString('ar-EG')}
