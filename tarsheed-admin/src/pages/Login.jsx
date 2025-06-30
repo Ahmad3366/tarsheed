@@ -21,7 +21,7 @@ const Login = () => {
             });
             const data = await res.json();
             if (res.ok) {
-                localStorage.setItem('user', JSON.stringify(data));
+                localStorage.setItem('user', JSON.stringify(data.adminId));
                 navigate('/', { replace: true });
             } else {
                 setError(data.message || 'فشل تسجيل الدخول');
