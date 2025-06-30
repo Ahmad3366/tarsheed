@@ -1,4 +1,4 @@
-export async function loginAdmin(req, res) {
+exports.loginAdmin = async (req, res) => {
 	const { username, password } = req.body;
 	try {
 		const admin = await Admin.findOne({ username });
