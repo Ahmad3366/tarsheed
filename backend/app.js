@@ -7,6 +7,7 @@ const cors = require('cors')
 const app = express();
 
 const reportsRouter = require('./routes/reportsRouter')
+const usersRouter = require('./routes/usersRouter')
 
 // Middlewares
 app.use(express.json({ limit: '4mb' }))
@@ -20,6 +21,8 @@ app.get('/helloworld', (req, res) => {
 
 // routes
 app.use('/api/reports', reportsRouter)
+app.use('/api/users', usersRouter)
+
 const mongoUri = process.env.NODE_ENV === 'dev' ? process.env.MONGO_URI_DEV : process.env.MONGO_URI;
 
 mongoose.connect(mongoUri)
