@@ -11,6 +11,9 @@ router.post('/', reportsController.createReport);
 // Get one report by ID
 router.get('/:id', reportsController.getReportById);
 
+// Update a report by ID
+router.patch('/:id', reportsController.updateReport);
+
 // Delete a report by ID
 router.delete('/:id', reportsController.deleteReport);
 

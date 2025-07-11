@@ -3,6 +3,7 @@ import './App.css';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
+import ReportDetails from './pages/ReportDetails';
 
 function App() {
     return (
@@ -10,6 +11,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/report/:id" element={<ReportDetails />} />
             </Routes>
         </Router>
     );

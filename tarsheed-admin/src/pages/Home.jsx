@@ -16,7 +16,6 @@ const Home = () => {
         fetch(API_URL + '/api/reports')
             .then(res => res.json())
             .then(data => {
-								console.log(data);
                 setReports(data);
                 setLoading(false);
             })
@@ -41,6 +40,7 @@ const Home = () => {
                             <th style={{ padding: '12px 8px', borderBottom: '1px solid #eee' }}>الوصف</th>
                             <th style={{ padding: '12px 8px', borderBottom: '1px solid #eee' }}>الحالة</th>
                             <th style={{ padding: '12px 8px', borderBottom: '1px solid #eee' }}>تاريخ الإنشاء</th>
+                            <th style={{ padding: '12px 8px', borderBottom: '1px solid #eee' }}>تفاصيل</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,6 +56,21 @@ const Home = () => {
                                 </td>
                                 <td style={{ padding: '10px 8px', fontSize: '0.95rem', color: '#888' }}>
                                     {new Date(report.createdAt).toLocaleString('ar-EG')}
+                                </td>
+                                <td style={{ padding: '10px 8px' }}>
+                                    <button
+                                        style={{
+                                            background: '#38bdf8',
+                                            color: '#fff',
+                                            border: 'none',
+                                            borderRadius: 4,
+                                            padding: '6px 16px',
+                                            cursor: 'pointer'
+                                        }}
+                                        onClick={() => navigate(`/report/${report._id}`)}
+                                    >
+                                        عرض كامل
+                                    </button>
                                 </td>
                             </tr>
                         ))}

@@ -45,3 +45,18 @@ exports.deleteReport = async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 };
+
+// Update a report by ID
+exports.updateReport = async (req, res) => {
+    try {
+        const report = await Report.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        );
+        if (!report) return res.status(404).json({ error: "Report s not found" });
+        res.json(report);
+    } catch (err) {
+        res.status(500).json({ error: "Server error" });
+    }
+};
