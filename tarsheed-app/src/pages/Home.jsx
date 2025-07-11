@@ -24,8 +24,8 @@ export default function Home() {
   return (
     <div className="center-container">
       <img
-        src="tailwindcss-mark.svg"
-        alt="Tailwind CSS Logo"
+        src="logo.png"
+        alt="App Logo"
         className="logo"
       />
 			<h1>ترشيد</h1>

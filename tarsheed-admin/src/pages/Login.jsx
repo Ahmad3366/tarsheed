@@ -36,7 +36,7 @@ const Login = () => {
         <div style={{ maxWidth: 350, margin: '80px auto', background: '#fff', borderRadius: 8, boxShadow: '0 2px 12px #0001', padding: 32 }}>
             <div style={{ textAlign: 'center', marginBottom: 16 }}>
                 <img
-                    src="/tailwindcss-mark.svg"
+                    src="/logo.png"
                     alt="Logo"
                     style={{ width: 60, height: 60, marginBottom: 8 }}
                 />

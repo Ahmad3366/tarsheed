@@ -25,7 +25,7 @@ const Home = () => {
     return (
         <div style={{ maxWidth: 900, margin: '40px auto', padding: 24 }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 32 }}>
-                <img src="/tailwindcss-mark.svg" alt="App Logo" style={{ width: 100, height: 100 }} />
+                <img src="/logo.png" alt="App Logo" style={{ width: 100, height: 100 }} />
                 <h1 style={{ color: '#38bdf8' }}>ترشيد</h1>
             </div>
             <h2 style={{ textAlign: 'center', marginBottom: 24 }}>كل البلاغات</h2>
