@@ -14,7 +14,7 @@ const Login = () => {
         setError('');
         setLoading(true);
         try {
-            const res = await fetch(API_URL + "/login", {
+            const res = await fetch(API_URL + "/api/users/login", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
