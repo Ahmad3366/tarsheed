@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../config';
+import styles from './Login.module.css';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -33,54 +34,44 @@ const Login = () => {
     };
 
     return (
-        <div style={{ maxWidth: 350, margin: '80px auto', background: '#fff', borderRadius: 8, boxShadow: '0 2px 12px #0001', padding: 32 }}>
-            <div style={{ textAlign: 'center', marginBottom: 16 }}>
+        <div className={styles.container}>
+            <div className={styles.header}>
                 <img
                     src="/logo.png"
                     alt="Logo"
-                    style={{ width: 60, height: 60, marginBottom: 8 }}
+                    className={styles.logo}
                 />
-                <div style={{ fontSize: 28, fontWeight: 'bold', color: '#38bdf8', marginBottom: 8 }}>
+                <div className={styles.title}>
                     ترشيد
                 </div>
             </div>
-            <h2 style={{ textAlign: 'center', marginBottom: 24 }}>تسجيل دخول المشرف</h2>
+            <h2 className={styles.subtitle}>تسجيل دخول المشرف</h2>
             <form onSubmit={handleSubmit}>
-                <label style={{ display: 'block', marginBottom: 12 }}>
+                <label className={styles.label}>
                     اسم المستخدم
                     <input
                         type="text"
                         value={username}
                         onChange={e => setUsername(e.target.value)}
                         required
-                        style={{ width: '100%', padding: 8, marginTop: 4, borderRadius: 4, border: '1px solid #ccc' }}
+                        className={styles.input}
                     />
                 </label>
-                <label style={{ display: 'block', marginBottom: 20 }}>
+                <label className={styles.label}>
                     كلمة المرور
                     <input
                         type="password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                         required
-                        style={{ width: '100%', padding: 8, marginTop: 4, borderRadius: 4, border: '1px solid #ccc' }}
+                        className={styles.input}
                     />
                 </label>
-                {error && <div style={{ color: '#e11d48', marginBottom: 12, textAlign: 'center' }}>{error}</div>}
+                {error && <div className={styles.error}>{error}</div>}
                 <button
                     type="submit"
                     disabled={loading}
-                    style={{
-                        width: '100%',
-                        padding: 10,
-                        background: '#38bdf8',
-                        color: '#fff',
-                        border: 'none',
-                        borderRadius: 4,
-                        fontSize: 16,
-                        cursor: loading ? 'not-allowed' : 'pointer',
-                        opacity: loading ? 0.7 : 1
-                    }}
+                    className={styles.button}
                 >
                     {loading ? 'جاري الدخول...' : 'دخول'}
                 </button>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../config';
+import './App.css';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -23,50 +24,47 @@ const Home = () => {
     }, [navigate]);
 
     return (
-        <div style={{ maxWidth: 900, margin: '40px auto', padding: 24 }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 32 }}>
-                <img src="/logo.png" alt="App Logo" style={{ width: 100, height: 100 }} />
-                <h1 style={{ color: '#38bdf8' }}>ترشيد</h1>
+        <div className="admin-container">
+            <div className="admin-header">
+                <img src="/logo.png" alt="App Logo" className="admin-logo" />
+                <h1 className="admin-title">ترشيد</h1>
             </div>
-            <h2 style={{ textAlign: 'center', marginBottom: 24 }}>كل البلاغات</h2>
+            <h2 className="admin-section-title">كل البلاغات</h2>
             {loading ? (
-                <div style={{ textAlign: 'center', color: '#38bdf8' }}>جاري التحميل...</div>
+                <div className="admin-loading">جاري التحميل...</div>
             ) : (
-                <table style={{ width: '100%', borderCollapse: 'collapse', background: '#fff', borderRadius: 8, boxShadow: '0 2px 12px #0001', overflow: 'hidden' }}>
+                <table className="admin-table">
                     <thead>
-                        <tr style={{ background: '#f1f5f9', color: '#0ea5e9' }}>
-                            <th style={{ padding: '12px 8px', borderBottom: '1px solid #eee' }}>العنوان</th>
-                            <th style={{ padding: '12px 8px', borderBottom: '1px solid #eee' }}>الولاية</th>
-                            <th style={{ padding: '12px 8px', borderBottom: '1px solid #eee' }}>الوصف</th>
-                            <th style={{ padding: '12px 8px', borderBottom: '1px solid #eee' }}>الحالة</th>
-                            <th style={{ padding: '12px 8px', borderBottom: '1px solid #eee' }}>تاريخ الإنشاء</th>
-                            <th style={{ padding: '12px 8px', borderBottom: '1px solid #eee' }}>تفاصيل</th>
+                        <tr>
+                            <th>العنوان</th>
+                            <th>الولاية</th>
+                            <th>الوصف</th>
+                            <th>الحالة</th>
+                            <th>تاريخ الإنشاء</th>
+                            <th>تفاصيل</th>
                         </tr>
                     </thead>
                     <tbody>
                         {reports.map(report => (
-                            <tr key={report._id} style={{ borderBottom: '1px solid #eee' }}>
-                                <td style={{ padding: '10px 8px' }}>{report.title}</td>
-                                <td style={{ padding: '10px 8px' }}>{report.state}</td>
-                                <td style={{ padding: '10px 8px', maxWidth: 250, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                    {report.description}
-                                </td>
-                                <td style={{ padding: '10px 8px', color: report.status === 'resolved' ? '#22c55e' : report.status === 'rejected' ? '#e11d48' : '#f59e42', fontWeight: 'bold' }}>
+                            <tr key={report._id}>
+                                <td>{report.title}</td>
+                                <td>{report.state}</td>
+                                <td className="admin-desc">{report.description}</td>
+                                <td className={
+                                    report.status === 'resolved'
+                                        ? 'admin-status-resolved'
+                                        : report.status === 'rejected'
+                                        ? 'admin-status-rejected'
+                                        : 'admin-status-progress'
+                                }>
                                     {report.status === 'resolved' ? 'تم الحل' : report.status === 'rejected' ? 'مرفوض' : 'قيد المراجعة'}
                                 </td>
-                                <td style={{ padding: '10px 8px', fontSize: '0.95rem', color: '#888' }}>
+                                <td className="admin-date">
                                     {new Date(report.createdAt).toLocaleString('ar-EG')}
                                 </td>
-                                <td style={{ padding: '10px 8px' }}>
+                                <td>
                                     <button
-                                        style={{
-                                            background: '#38bdf8',
-                                            color: '#fff',
-                                            border: 'none',
-                                            borderRadius: 4,
-                                            padding: '6px 16px',
-                                            cursor: 'pointer'
-                                        }}
+                                        className="admin-details-btn"
                                         onClick={() => navigate(`/report/${report._id}`)}
                                     >
                                         عرض كامل
