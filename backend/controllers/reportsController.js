@@ -1,62 +1,83 @@
 const Report = require("../models/Report");
 
-// Get all reports
-exports.getAllReports = async (req, res) => {
+module.exports = {
+  // Get all reports
+  getAllReports: async (req, res) => {
     try {
-        const reports = await Report.find().sort({ createdAt: -1 });
-        res.json(reports);
+      const reports = await Report.find().sort({ createdAt: -1 });
+      res.json(reports);
     } catch (err) {
-        res.status(500).json({ error: "Server error" });
+      res.status(500).json({ error: "Server error" });
     }
-};
+  },
+  // Get one report by ID
 
-// Get one report by ID
-exports.getReportById = async (req, res) => {
+  getAllReports: async (req, res) => {
     try {
-        const report = await Report.findById(req.params.id);
-        if (!report) return res.status(404).json({ error: "Report not found" });
-        res.json(report);
+      const reports = await Report.find().sort({ createdAt: -1 });
+      res.json(reports);
     } catch (err) {
-        res.status(500).json({ error: "Server error" });
+      res.status(500).json({ error: "Server error" });
     }
-};
+  },
 
-// Create a new report
-exports.createReport = async (req, res) => {
-	try {
-		const { title, state, description, imageFile, userId } = req.body;
-		const report = await Report.create({ title, state, description, imageFile, userId });
-		res.status(201).json(report);
-	} catch (err) {
-		console.log(err);
-		
-		res.status(400).json({ error: "somthing went wrong" });
-		
-	}
-};
-
-// Delete a report by ID
-exports.deleteReport = async (req, res) => {
+  getReportById: async (req, res) => {
     try {
-        const report = await Report.findByIdAndDelete(req.params.id);
-        if (!report) return res.status(404).json({ error: "Report not found" });
-        res.json({ message: "Report deleted" });
+      const report = await Report.findById(req.params.id);
+      if (!report) return res.status(404).json({ error: "Report not found" });
+      res.json(report);
     } catch (err) {
-        res.status(500).json({ error: "Server error" });
+      res.status(500).json({ error: "Server error" });
     }
-};
+  },
+  // Create a new report
 
-// Update a report by ID
-exports.updateReport = async (req, res) => {
+  createReport: async (req, res) => {
     try {
-        const report = await Report.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            { new: true }
-        );
-        if (!report) return res.status(404).json({ error: "Report s not found" });
-        res.json(report);
+      const { reporterName, reporterPhone, title, state, description, imageFile } = req.body;
+
+      if (!reporterName || !reporterPhone || !title || !state || !imageFile || !userId) {
+        return res.status(400).json({ error: "All fields are required" });
+      }
+      if (typeof reporterPhone !== 'number') {
+        return res.status(400).json({ error: "Reporter phone must be a number"
+      });
+      }
+
+      const report = await Report.create({
+        title,
+        state,
+        description,
+        imageFile,
+        userId,
+      });
+      res.status(201).json(report);
     } catch (err) {
-        res.status(500).json({ error: "Server error" });
+      console.log(err);
+
+      res.status(400).json({ error: "somthing went wrong" });
     }
+  },
+  // Delete a report by ID
+  deleteReport: async (req, res) => {
+    try {
+      const report = await Report.findByIdAndDelete(req.params.id);
+      if (!report) return res.status(404).json({ error: "Report not found" });
+      res.json({ message: "Report deleted" });
+    } catch (err) {
+      res.status(500).json({ error: "Server error" });
+    }
+  },
+  // Update a report by ID
+  updateReport: async (req, res) => {
+    try {
+      const report = await Report.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+      });
+      if (!report) return res.status(404).json({ error: "Report s not found" });
+      res.json(report);
+    } catch (err) {
+      res.status(500).json({ error: "Server error" });
+    }
+  },
 };

@@ -1,6 +1,16 @@
 const mongoose = require('mongoose');
 
 const ReportSchema = new mongoose.Schema({
+    reporterName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    reporterPhone: {
+        type: Number,
+        required: true,
+        trim: true
+    },
     title: {
         type: String,
         required: true,
