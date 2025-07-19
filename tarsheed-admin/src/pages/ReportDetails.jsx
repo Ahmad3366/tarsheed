@@ -35,7 +35,6 @@ export default function ReportDetails() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),
       });
-      const data = await res.json();
       if (res.ok) {
         setReport((prev) => ({ ...prev, status: newStatus }));
       }

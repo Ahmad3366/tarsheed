@@ -8,13 +8,6 @@ module.exports = {
     try {
       var { fullName, email, username, password } = req.body;
 
-      console.log("Creating admin with data:", {
-        fullName,
-        email,
-        username,
-        password: password ? "******" : undefined, // Mask password in logs
-      });
-
       // Validation
       if (!fullName || !email || !username || !password) {
         return res.status(400).json({ message: "All fields are required" });

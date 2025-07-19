@@ -34,22 +34,20 @@ module.exports = {
 
   createReport: async (req, res) => {
     try {
-      const { reporterName, reporterPhone, title, state, description, imageFile } = req.body;
+      const { reporterName, reporterPhone, title, state, description, imageFile, userId } = req.body;
 
-      if (!reporterName || !reporterPhone || !title || !state || !imageFile || !userId) {
+      if (!reporterName || !reporterPhone || !title || !state || !imageFile) {
         return res.status(400).json({ error: "All fields are required" });
-      }
-      if (typeof reporterPhone !== 'number') {
-        return res.status(400).json({ error: "Reporter phone must be a number"
-      });
       }
 
       const report = await Report.create({
+        reporterName,
+        reporterPhone,
         title,
         state,
         description,
         imageFile,
-        userId,
+        userId
       });
       res.status(201).json(report);
     } catch (err) {

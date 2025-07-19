@@ -13,12 +13,12 @@ const reportsRouter = require("./routes/reportsRouter");
 const usersRouter = require("./routes/usersRouter");
 
 // Middlewares
-app.use(express.json({ limit: "4mb" }));
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true, limit: "4mb" }));
+app.use(cors({
+  origin: "*",
+  credentials: true,
+}));
 app.use(cookieParser());
 
 // routes

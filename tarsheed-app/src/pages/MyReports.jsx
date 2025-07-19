@@ -31,7 +31,7 @@ export default function MyReports() {
             <div className={styles.cardsContainer}>
                 {loading ? (
                     <div className={styles.loading}>جاري التحميل...</div>
-                ) : reports.length === 0 ? (
+                ) : !reports.length ? (
                     <div className={styles.empty}>لا توجد بلاغات بعد</div>
                 ) : (
                     reports.map(report => (

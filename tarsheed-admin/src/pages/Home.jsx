@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../config';
-import './App.css';
+import '../App.css';
+
+import LogoutButton from '../components/LogoutButton';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -29,6 +31,7 @@ const Home = () => {
                 <img src="/logo.png" alt="App Logo" className="admin-logo" />
                 <h1 className="admin-title">ترشيد</h1>
             </div>
+            <LogoutButton />
             <h2 className="admin-section-title">كل البلاغات</h2>
             {loading ? (
                 <div className="admin-loading">جاري التحميل...</div>
@@ -36,6 +39,8 @@ const Home = () => {
                 <table className="admin-table">
                     <thead>
                         <tr>
+                            <th>اسم صاحب البلاغ</th>
+                            <th>رقم صاحب البلاغ</th>
                             <th>العنوان</th>
                             <th>الولاية</th>
                             <th>الوصف</th>
@@ -47,6 +52,8 @@ const Home = () => {
                     <tbody>
                         {reports.map(report => (
                             <tr key={report._id}>
+                                <td>{report.reporterName}</td>
+                                <td>{report.reporterPhone}</td>
                                 <td>{report.title}</td>
                                 <td>{report.state}</td>
                                 <td className="admin-desc">{report.description}</td>
