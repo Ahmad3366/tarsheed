@@ -25,6 +25,20 @@
   text-align: center;
 }
 
+.reporterName {
+  color: #4a5568;
+  font-size: 1.2rem;
+  margin: 4px 0;
+  text-align: center;
+}
+
+.reporterPhone {
+  color: #4a5568;
+  font-size: 1.2rem;
+  margin: 4px 0;
+  text-align: center;
+}
+
 .description {
   color: #333;
   margin-bottom: 16px;

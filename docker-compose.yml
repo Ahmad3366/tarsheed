@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+
+  tarsheed-app:
+    build: ./tarsheed-app
+    ports:
+      - "8080:8080"
+
+  tarsheed-admin:
+    build: ./tarsheed-admin
+    ports:
+      - "5173:5173"
