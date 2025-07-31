@@ -151,24 +151,24 @@ export default function AddReport() {
                                 الولاية <span className={styles.required}>*</span>
                             </span>
                             <select className={styles.input} defaultValue="KS" required>
-                                <option value="KS">كسلا</option>
-                                <option value="KH" disabled>الخرطوم</option>
-                                <option value="SH" disabled>الشمالية</option>
-                                <option value="RD" disabled>البحر الأحمر</option>
-                                <option value="GD" disabled>القضارف</option>
-                                <option value="GZ" disabled>الجزيرة</option>
-                                <option value="NR" disabled>نهر النيل</option>
-                                <option value="NB" disabled>النيل الأزرق</option>
-                                <option value="NW" disabled>النيل الأبيض</option>
-                                <option value="SN" disabled>سنار</option>
-                                <option value="NK" disabled>شمال كردفان</option>
-                                <option value="SK" disabled>جنوب كردفان</option>
-                                <option value="GK" disabled>غرب كردفان</option>
-                                <option value="ND" disabled>شمال دارفور</option>
-                                <option value="SD" disabled>جنوب دارفور</option>
-                                <option value="ED" disabled>شرق دارفور</option>
-                                <option value="WD" disabled>غرب دارفور</option>
-                                <option value="CD" disabled>وسط دارفور</option>
+                                <option value="KS" >كسلا</option>
+                                <option value="KH" >الخرطوم</option>
+                                <option value="SH" >الشمالية</option>
+                                <option value="RD" >البحر الأحمر</option>
+                                <option value="GD" >القضارف</option>
+                                <option value="GZ" >الجزيرة</option>
+                                <option value="NR" >نهر النيل</option>
+                                <option value="NB" >النيل الأزرق</option>
+                                <option value="NW" >النيل الأبيض</option>
+                                <option value="SN" >سنار</option>
+                                <option value="NK" >شمال كردفان</option>
+                                <option value="SK" >جنوب كردفان</option>
+                                <option value="GK" >غرب كردفان</option>
+                                <option value="ND" >شمال دارفور</option>
+                                <option value="SD" >جنوب دارفور</option>
+                                <option value="ED" >شرق دارفور</option>
+                                <option value="WD" >غرب دارفور</option>
+                                <option value="CD" >وسط دارفور</option>
                             </select>
                         </label>
                         <label className={styles.label}>
